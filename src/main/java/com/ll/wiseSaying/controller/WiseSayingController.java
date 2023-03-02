@@ -49,6 +49,16 @@ public class WiseSayingController {
             return;
         }
 
-        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+        WiseSaying wiseSaying = findById(id);
+        wiseSayings.remove(wiseSaying);
+    }
+
+    private WiseSaying findById(int id) {
+        for (WiseSaying wiseSaying : wiseSayings) {
+            if (wiseSaying.getId() == id) {
+                return wiseSaying;
+            }
+        }
+        return null;
     }
 }
