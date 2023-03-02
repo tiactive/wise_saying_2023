@@ -6,13 +6,12 @@ import com.ll.wiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class WiseSayingController {
     private long lastWiseSayingId;
     private final List<WiseSaying> wiseSayings;
 
-    public WiseSayingController(Scanner sc) {
+    public WiseSayingController() {
         lastWiseSayingId = 0;
         wiseSayings = new ArrayList<>();
     }
@@ -43,15 +42,13 @@ public class WiseSayingController {
     }
 
     public void remove(Rq rq) {
-        int id = -1;
-        try {
-            id = Integer.parseInt(rq.getParam("id"));
-        }
-        catch(NumberFormatException e) {
+        int id = rq.getIntParam("id", -1);
+
+        if (id == -1) {
             System.out.println("id(정수)를 입력해주세요.");
             return;
         }
 
-        System.out.printf("%d번 명령이 삭제됨.\n", id);
+        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 }

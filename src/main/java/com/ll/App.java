@@ -1,29 +1,26 @@
 package com.ll;
 
+
 import com.ll.system.controller.SystemController;
 import com.ll.wiseSaying.controller.WiseSayingController;
-import com.ll.wiseSaying.entity.WiseSaying;
-
-import java.util.*;
 
 public class App {
     public void run() {
-        System.out.println("== 명언 앱 ==");
-        long lastWiseSayingId = 0;
-        List<WiseSaying> wiseSayings = new ArrayList<>();
+        System.out.println("== 명언앱 ==");
 
         SystemController systemController = new SystemController();
-        WiseSayingController wiseSayingController = new WiseSayingController(Container.getScanner());
+        WiseSayingController wiseSayingController = new WiseSayingController();
 
         while (true) {
             System.out.print("명령) ");
+            // trim() : 혹시 있을지 모를 좌우공백제거된 버전으로 주세요.
             String command = Container.getScanner().nextLine().trim();
             Rq rq = new Rq(command);
 
             switch (rq.getActionCode()) {
                 case "종료":
                     systemController.exit();
-                    break;
+                    return;
                 case "등록":
                     wiseSayingController.write();
                     break;
@@ -37,4 +34,3 @@ public class App {
         }
     }
 }
-
