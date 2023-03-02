@@ -28,16 +28,9 @@ public class App {
             } else if (command.startsWith("삭제")) {
                 // 정리 시작
                 // 삭제?id=1&authorName="홍길동) 이런 형식
-                String[] commandBits = command.split("\\?", 2);
-                String actionCode = commandBits[0];
-                Map<String, String> params = new HashMap<>();
-                String[] paramBits = commandBits[1].split("&");
-                for(String paramStr:paramBits) {
-                    String[] paramStrBits = paramStr.split("=", 2);
-                    String key = paramStrBits[0];
-                    String value = paramStrBits[1];
-                    params.put(key,value);
-                }
+                Rq rq = new Rq(command);
+                System.out.printf("actionCode: %s\n", rq.getActionCode());
+                System.out.printf("params.id: %s\n", rq.getParam("id"));
                 // 정리 끝
                 wiseSayingController.remove();
             }
