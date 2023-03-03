@@ -10,6 +10,7 @@ public class App {
 
         SystemController systemController = new SystemController();
         WiseSayingController wiseSayingController = new WiseSayingController();
+        // 불러오기
 
         while (true) {
             System.out.print("명령) ");
